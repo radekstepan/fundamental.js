@@ -6,7 +6,6 @@
 	<link href="css/todo.css" media="all" rel="stylesheet" type="text/css"/>
 
 	<script src="js/lib/jquery-1.7.js"></script>
-	<script src="js/lib/jquery.tmpl.js"></script>
 
 	<script src="js/lib/underscore.js"></script>
 
@@ -55,24 +54,6 @@
 				<input class="todo-input" type="text" value="" />
 			</div>
 		</div>
-	</script>
-
-	<script type="text/template" id="stats-template">
-		<% if (total) { %>
-			<span class="todo-count">
-				<span class="number"><%= remaining %></span>
-				<span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left.
-			</span>
-		<% } %>
-		
-		<% if (done) { %>
-			<span class="todo-clear">
-				<a href="#">
-					Clear <span class="number-done"><%= done %></span>
-					completed <span class="word-done"><%= done == 1 ? 'item' : 'items' %></span>
-				</a>
-			</span>
-		<% } %>
 	</script>
 </body>
 </html>

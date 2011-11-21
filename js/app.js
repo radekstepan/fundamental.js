@@ -80,7 +80,17 @@ $(function(){
 		"tagName":  "li",
 
 		// Cache the template function for a single item.
-		"template": _.template($('#item-template').html()),
+		"template": _.template(function() {
+			var result;
+			$.ajax({
+				"async": false,
+			    "url": "js/templates/_todo.html",
+			  	success: function(data) {
+			    	result = data;
+			  	},
+			});
+			return result;
+		}()),
 
 		// The DOM events specific to an item.
 		"events": {
@@ -163,7 +173,17 @@ $(function(){
 
 		// Our template for the line of statistics at the bottom of the app.
 		// Compiles JavaScript templates into functions that can be evaluated for rendering.
-		"statsTemplate": _.template($('#stats-template').html()),
+		"statsTemplate": _.template(function() {
+			var result;
+			$.ajax({
+				"async": false,
+			    "url": "js/templates/_stats.html",
+			  	success: function(data) {
+			    	result = data;
+			  	},
+			});
+			return result;
+		}()),
 
 		// Delegated events for creating new items, and clearing completed ones.
 		"events": {

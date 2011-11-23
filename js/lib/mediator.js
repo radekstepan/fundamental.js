@@ -32,7 +32,8 @@ var Mediator = function() {
     return {
         publish:   publish,
         listen:    listen,
-        subscribe: listen
+        subscribe: listen,
+        bind:      listen 
     }
 
 }();

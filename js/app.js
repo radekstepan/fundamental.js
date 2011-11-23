@@ -1,5 +1,8 @@
+// Application Controller
+// ----------
+
 // Load the application once the DOM is ready, using `jQuery.ready`:
-$(function(){
+$(function() {
 
 	// Todo Model
 	// Models are the heart of any JavaScript application, containing the interactive data as well as a large part

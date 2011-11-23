@@ -1,48 +1,38 @@
 var Mediator = function() {
     
-    var listeners = {};
+    var listeners = {},
+        debug     = true;
 
-    var publish = function(name) {
-        if (typeof listeners[name] !== 'undefined') {
+    // publish a notification to whoever listens
+    var publish = function(notification) {
+        if (typeof listeners[notification] !== 'undefined') {
             var args = [].slice.call(arguments, 1);
-            for (module in listeners[name]) {
-                listeners[name][module].apply(this, args);
+            for (module in listeners[notification]) {
+                listeners[notification][module].apply(this, args);
+
+                if (debug) {
+                    console.log('"' + notification + '" is heard by ' + module);
+                }
             }
         }
     }
   
-    var listen = function(module, name, callback) {
-        if (typeof(listeners[name]) == 'undefined') {
-            listeners[name] = {};
+    // a specific module listens to notification passed
+    var listen = function(module, notification, callback) {
+        if (typeof(listeners[notification]) == 'undefined') {
+            listeners[notification] = {};
         }
-        listeners[name][module] = callback;
+        listeners[notification][module] = callback;
+
+        if (debug) {
+            console.log(module + ' listening for "' + notification + '"');
+        }
     }
   
     return {
-        publish: publish,
-        listen:  listen
+        publish:   publish,
+        listen:    listen,
+        subscribe: listen
     }
 
 }();
-
-// View
-var View = function() {
-    
-    var text = 'This is the value passed: ';
-
-    var example = function() {
-        Mediator.publish('exampleViewCalled', this, 1984);
-    }
-
-    return {
-        example: example,
-        text:    text
-    }
-}();
-
-// Module - Console Logging registered to listen to the View
-Mediator.listen('consoleModule', 'exampleViewCalled', function(context, value) {
-    console.log(context.text + value);
-});
-
-View.example(); // event happenz...

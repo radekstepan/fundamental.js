@@ -14,7 +14,7 @@ var TodoView = Backbone.View.extend({
 		$.ajax({
 			"async": false,
 		    "url":   "js/templates/_todo.html",
-		  	success: function(data) {
+		  	success: function (data) {
 		    	result = data;
 		  	},
 		});
@@ -62,14 +62,12 @@ var TodoView = Backbone.View.extend({
 
 	// Switch this view into `"editing"` mode, displaying the input field.
 	edit: function() {
-		$(this.el).addClass("editing");
-		this.input.focus();
+		Mediator.publish('beginContentEditing', this);
 	},
 
 	// Close the `"editing"` mode, saving changes to the todo.
 	close: function() {
-		this.model.save({text: this.input.val()});
-		$(this.el).removeClass("editing");
+		Mediator.publish('endContentEditing', this);
 	},
 
 	// If you hit `enter`, we're through editing the item.

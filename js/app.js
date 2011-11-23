@@ -41,7 +41,7 @@ $(function(){
 
 		// Filter down the list of all todo items that are finished.
 		done: function() {
-			return this.filter(function(todo) {
+			return this.filter(function (todo) {
 				return todo.get("done"); // all items with `done` attr set to true
 			});
 		},
@@ -75,5 +75,43 @@ $(function(){
 				window.App = new AppView;
 		});		
 	});
+
+	// Modules called from Views
+	// ---------------
+
+	// Todo entry counter listens to when the app is rendered
+	Mediator.listen('todoCounter', 'appRendered', function (view, Todos) {
+		view.$("#todo-stats").html(view.statsTemplate({
+			"total":      Todos.length,
+			"done":       Todos.done().length,
+			"remaining":  Todos.remaining().length
+		}));
+	});
+
+	// Create a new todo entry on enter press listens to createWhenEntered
+   Mediator.listen('keyboardManager', 'createWhenEntered', function (view, e, Todos) {
+		var text = view.input.val();
+		if (!text || e.keyCode != 13) return;
+		
+		Todos.create({text: text});
+		view.input.val('');
+    });
+
+    // Clear all completed todos when clearContent is dispatched
+    Mediator.listen('garbageCollector', 'clearContent', function (Todos) {
+		_.each(Todos.done(), function (todo) {
+			todo.destroy();
+		});
+    });
+
+    Mediator.listen('editFocus', 'beginContentEditing', function (view) {
+    	$(view.el).addClass("editing");
+		view.input.focus();
+    });
+
+    Mediator.listen('todoSaver', 'endContentEditing', function (view) {
+		view.model.save({text: view.input.val()});
+		$(view.el).removeClass("editing");
+    });
 
 });

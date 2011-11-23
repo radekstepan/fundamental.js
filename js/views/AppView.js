@@ -45,11 +45,7 @@ var AppView = Backbone.View.extend({
 	// Re-rendering the App just means refreshing the statistics -- the rest
 	// of the app doesn't change.
 	render: function() {
-		this.$("#todo-stats").html(this.statsTemplate({
-			"total":      Todos.length,
-			"done":       Todos.done().length,
-			"remaining":  Todos.remaining().length
-		}));
+		Mediator.publish('appRendered', this, Todos);
 	},
 
 	// Add a single todo item to the list by creating a view for it, and
@@ -67,16 +63,12 @@ var AppView = Backbone.View.extend({
 	// If you hit return in the main input field, and there is text to save,
 	// create new **Todo** model persisting it to *localStorage*.
 	createOnEnter: function(e) {
-		var text = this.input.val();
-		if (!text || e.keyCode != 13) return;
-		
-		Todos.create({text: text});
-		this.input.val('');
+		Mediator.publish('createWhenEntered', this, e, Todos);
 	},
 
 	// Clear all done todo items, destroying their models.
 	clearCompleted: function() {
-		_.each(Todos.done(), function(todo){ todo.destroy(); });
+		Mediator.publish('clearContent', Todos);
 		return false;
 	},
 

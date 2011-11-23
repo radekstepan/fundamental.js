@@ -84,7 +84,7 @@ $(function(){
 			var result;
 			$.ajax({
 				"async": false,
-			    "url": "js/templates/_todo.html",
+			    "url":   "js/templates/_todo.html",
 			  	success: function(data) {
 			    	result = data;
 			  	},
@@ -177,7 +177,7 @@ $(function(){
 			var result;
 			$.ajax({
 				"async": false,
-			    "url": "js/templates/_stats.html",
+			    "url":   "js/templates/_stats.html",
 			  	success: function(data) {
 			    	result = data;
 			  	},

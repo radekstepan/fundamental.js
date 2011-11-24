@@ -1,9 +1,12 @@
 An alternative to the "classic" example Todo App by [Jérôme Gravel-Niquet](https://github.com/documentcloud/backbone/tree/master/examples/todos) and later [Addy Osmani](https://github.com/addyosmani/todomvc/tree/master/todo-example/backbone).
 
+## Use
+Run **./webserver.sh** to get past Access-Control-Allow-Origin policy.
+
 ## Architecture
 The app is based on backbone.js treating Views as app modules that send notifications handled by an internal Mediator pattern. If the different js files were loaded using AMD, it would represent an example of Addy Osmani`s [Patterns For Large-Scale JavaScript Application Architecture](http://addyosmani.com/largescalejavascript) approach.
 
-##  Modules
+###  Modules
 The modules do not communicate between each other, only talk to the Model and trigger notifications. They are:
 
 - **CreateTodoView** that represents the input field for new tasks

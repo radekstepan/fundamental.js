@@ -3,7 +3,7 @@
 
 // The DOM element for a todo item...
 // Not a strict convention
-var TodoView = Backbone.View.extend({
+App.Views.TodoView = Backbone.View.extend({
 
 	//... is a list tag.
 	"tagName":  "li",
@@ -62,12 +62,14 @@ var TodoView = Backbone.View.extend({
 
 	// Switch this view into `"editing"` mode, displaying the input field.
 	edit: function() {
-		Mediator.publish('beginContentEditing', this);
+    	$(this.el).addClass("editing");
+		this.input.focus();
 	},
 
 	// Close the `"editing"` mode, saving changes to the todo.
 	close: function() {
-		Mediator.publish('endContentEditing', this);
+		this.model.save({text: this.input.val()});
+		$(this.el).removeClass("editing");
 	},
 
 	// If you hit `enter`, we're through editing the item.

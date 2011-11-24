@@ -37,3 +37,7 @@ html{background:#eee;}
 #todo-list li:after,#todo-stats:after{content:"\0020";display:block;height:0;clear:both;overflow:hidden;visibility:hidden;}
 #todo-list .editing .edit,#todo-list li:hover .todo-destroy{display:block;}
 #todo-stats .todo-clear a:hover,#instructions a{color:#369;}
+
+#create-todo { border-top:5px solid #09F4CB; margin-bottom:5px; }
+#todos { border-top:5px solid #D8365D; margin-bottom:5px; }
+#todo-stats { border-top:5px solid #5F7DA0; margin-bottom:5px; }

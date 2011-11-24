@@ -58,6 +58,7 @@ App.Views.TodoView = Backbone.View.extend({
 	// Toggle the `"done"` state of the model.
 	toggleDone: function() {
 		this.model.toggle();
+		App.Mediator.trigger("todosStatsUpdated");
 	},
 
 	// Switch this view into `"editing"` mode, displaying the input field.
@@ -86,6 +87,7 @@ App.Views.TodoView = Backbone.View.extend({
 	clear: function() {
 		// HTTP DELETE
 		this.model.destroy();
+		App.Mediator.trigger("todosStatsUpdated");
 	}
 
 });

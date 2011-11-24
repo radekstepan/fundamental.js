@@ -7,11 +7,13 @@ App.Views.TodoListView = Backbone.View.extend({
 
 	// Instead of generating a new element, bind to the existing skeleton of
 	// the App already present in the HTML.
-	"el": $("#todos"),
+	"el": "#todos",
 
 	initialize: function(options) {
 		_.bindAll(this, "addOne");
-		App.Mediator.bind("todoCreated", this.addOne);	
+		App.Mediator.bind("todoCreated", this.addOne);
+
+		this.addAll();
 	},
 
 	// Add a single todo item to the list by creating a view for it, and
@@ -19,6 +21,7 @@ App.Views.TodoListView = Backbone.View.extend({
 	addOne: function(todo) {
 		var view = new App.Views.TodoView({model: todo});
 		$("#todo-list").append(view.render().el);
+		App.Mediator.trigger("todosStatsUpdated");
 	},
 
 	// Add all items in the **Todos** collection at once.

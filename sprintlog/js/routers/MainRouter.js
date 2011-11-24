@@ -6,10 +6,9 @@ App.Routers.Main = Backbone.Router.extend({
 
         new App.Views.CreateTodoView;
         
-        var listView = new App.Views.TodoListView;
-        listView.addAll();
+		new App.Views.TodoStatsView;
 
-        //new App.Views.TodoStats;
+        new App.Views.TodoListView;
     }
 
 });

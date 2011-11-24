@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fundament.js Todo App Example</title>
+	
+	<link href="css/todo.css" media="all" rel="stylesheet" type="text/css"/>
+
+	<script src="js/lib/jquery-1.7.js"></script>
+
+	<script src="js/lib/underscore.js"></script>
+
+	<script src="js/lib/backbone.js"></script>
+	<script src="js/lib/backbone.localstorage.js"></script>
+	
+	<script src="js/lib/mediator.js"></script>
+	<script src="js/App.js"></script>
+</head>
+<body>
+	<div id="todoapp">
+
+		<div class="title">
+			<h1>Todo</h1>
+		</div>
+
+		<div class="content">
+			<div id="create-todo">
+				<input id="new-todo" placeholder="What needs to be done?" type="text" />
+				<span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
+			</div>
+
+			<div id="todos">
+				<ul id="todo-list"></ul>
+			</div>
+			
+			<div id="todo-stats"></div>
+		</div>
+
+	</div>
+
+	<div id="credits">
+		Created by
+		<br />
+		<a href="http://jgn.me/">J&eacute;r&ocirc;me Gravel-Niquet</a>
+	</div>
+
+	<script type="text/template" id="item-template">
+		<div class="todo <%= done ? 'done' : '' %>">
+			<div class="display">
+				<input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+				<div class="todo-text"></div>
+				<span class="todo-destroy"></span>
+			</div>
+			
+			<div class="edit">
+				<input class="todo-input" type="text" value="" />
+			</div>
+		</div>
+	</script>
+</body>
+</html>

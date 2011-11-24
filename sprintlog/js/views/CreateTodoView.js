@@ -27,7 +27,7 @@ App.Views.CreateTodoView = Backbone.View.extend({
 		
 		this.input.val('');
 
-		Mediator.trigger("todoCreated", todo);
+		App.Mediator.trigger("todoCreated", todo);
 	}
 
 });

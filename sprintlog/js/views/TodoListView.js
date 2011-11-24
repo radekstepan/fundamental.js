@@ -11,7 +11,7 @@ App.Views.TodoListView = Backbone.View.extend({
 
 	initialize: function(options) {
 		_.bindAll(this, "addOne");
-		Mediator.bind("todoCreated", this.addOne);	
+		App.Mediator.bind("todoCreated", this.addOne);	
 	},
 
 	// Add a single todo item to the list by creating a view for it, and

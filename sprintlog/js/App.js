@@ -1,12 +1,12 @@
-var Mediator = {};
-_.extend(Mediator, Backbone.Events);
-
 var App = {
+
+	Mediator: {},
 
     Views: {},
     Routers: {},
 
     init: function() {
+    	_.extend(App.Mediator, Backbone.Events);
         new App.Routers.Main;
     }
 

@@ -1,11 +1,9 @@
 // Todo Item View
-// --------------
+// ----------
 
-// The DOM element for a todo item...
-// Not a strict convention
-var TodoView = Backbone.View.extend({
+App.Views.TodoView = Backbone.View.extend({
 
-	//... is a list tag.
+	// Element does not exist yet, but will be a `li`.
 	"tagName":  "li",
 
 	// Cache the template function for a single item.
@@ -29,7 +27,7 @@ var TodoView = Backbone.View.extend({
 		"keypress .todo-input"      : "updateOnEnter"
 	},
 
-	// The TodoView listens for changes to its model, re-rendering.
+	// The TodoView listens for changes to its Model, re-rendering.
 	// If the view defines an initialize function, it will be called when the view is first created.
 	initialize: function() {
 		this.model.bind("change", this.render, this);
@@ -58,16 +56,19 @@ var TodoView = Backbone.View.extend({
 	// Toggle the `"done"` state of the model.
 	toggleDone: function() {
 		this.model.toggle();
+		App.Mediator.trigger("todosStatsUpdated");
 	},
 
 	// Switch this view into `"editing"` mode, displaying the input field.
 	edit: function() {
-		Mediator.publish('beginContentEditing', this);
+    	$(this.el).addClass("editing");
+		this.input.focus();
 	},
 
 	// Close the `"editing"` mode, saving changes to the todo.
 	close: function() {
-		Mediator.publish('endContentEditing', this);
+		this.model.save({text: this.input.val()});
+		$(this.el).removeClass("editing");
 	},
 
 	// If you hit `enter`, we're through editing the item.
@@ -84,6 +85,7 @@ var TodoView = Backbone.View.extend({
 	clear: function() {
 		// HTTP DELETE
 		this.model.destroy();
+		App.Mediator.trigger("todosStatsUpdated");
 	}
 
 });

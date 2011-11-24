@@ -21,7 +21,7 @@ App.Views.TodoStatsView = Backbone.View.extend({
 	}()),
 
 	"events": {
-		"click .todo-clear a": "clearCompleted"
+		"click .todo-clear a": "clearCompletedTodos"
 	},
 
 	// Listen when stats have updated so we can re-render ourselves. We could also bind to the
@@ -42,7 +42,7 @@ App.Views.TodoStatsView = Backbone.View.extend({
 	},
 
 	// Clear all done todo items, destroying their Models.
-	clearCompleted: function() {
+	clearCompletedTodos: function() {
 		_.each(App.Models.Todos.done(), function (todo) {
 			todo.destroy();
 		});

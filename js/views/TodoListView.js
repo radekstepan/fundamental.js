@@ -7,16 +7,16 @@ App.Views.TodoListView = Backbone.View.extend({
 
 	initialize: function(options) {
 		// Bind to `todoCreated` notification so we can update the list view.
-		_.bindAll(this, "addOne");
-		App.Mediator.bind("todoCreated", this.addOne);
+		_.bindAll(this, "addOneTodo");
+		App.Mediator.bind("todoCreated", this.addOneTodo);
 
 		// On initialization, add all existing **Todo** items.
-		this.addAll();
+		this.addAllTodos();
 	},
 
 	// Add a single todo item to the list by creating a view for it, and
 	// appending its element to the `<ul>`.
-	addOne: function(todo) {
+	addOneTodo: function(todo) {
 		var view = new App.Views.TodoView({model: todo});
 		$("#todo-list").append(view.render().el);
 
@@ -25,8 +25,8 @@ App.Views.TodoListView = Backbone.View.extend({
 	},
 
 	// Add all items in the **Todos** collection at once.
-	addAll: function() {
-		App.Models.Todos.each(this.addOne);
+	addAllTodos: function() {
+		App.Models.Todos.each(this.addOneTodo);
 	},
 
 });

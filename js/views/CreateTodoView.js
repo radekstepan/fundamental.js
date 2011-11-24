@@ -8,7 +8,7 @@ App.Views.CreateTodoView = Backbone.View.extend({
 
 	// The DOM events to bind to.
 	"events": {
-		"keypress #new-todo":  "createOnEnter"
+		"keypress #new-todo":  "createTodoOnEnter"
 	},
 
 	// Keep a local reference to an input field.
@@ -18,7 +18,7 @@ App.Views.CreateTodoView = Backbone.View.extend({
 
 	// If you hit return in the main input field, and there is text to save,
 	// create new **Todo** model persisting it to *localStorage*.
-	createOnEnter: function(e) {
+	createTodoOnEnter: function(e) {
 		var text = this.input.val();
 		if (!text || e.keyCode != 13) return;
 		

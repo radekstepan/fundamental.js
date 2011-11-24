@@ -1,18 +1,16 @@
-// Todo Item View
-// --------------
+// Todo List View
+// ----------
 
-// The DOM element for a todo item...
-// Not a strict convention
 App.Views.TodoListView = Backbone.View.extend({
 
-	// Instead of generating a new element, bind to the existing skeleton of
-	// the App already present in the HTML.
 	"el": "#todos",
 
 	initialize: function(options) {
+		// Bind to `todoCreated` notification so we can update the list view.
 		_.bindAll(this, "addOne");
 		App.Mediator.bind("todoCreated", this.addOne);
 
+		// On initialization, add all existing **Todo** items.
 		this.addAll();
 	},
 
@@ -21,6 +19,8 @@ App.Views.TodoListView = Backbone.View.extend({
 	addOne: function(todo) {
 		var view = new App.Views.TodoView({model: todo});
 		$("#todo-list").append(view.render().el);
+
+		// Send a notification that we need to update the stats.
 		App.Mediator.trigger("todosStatsUpdated");
 	},
 

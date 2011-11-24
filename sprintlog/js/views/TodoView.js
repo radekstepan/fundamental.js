@@ -1,11 +1,9 @@
 // Todo Item View
-// --------------
+// ----------
 
-// The DOM element for a todo item...
-// Not a strict convention
 App.Views.TodoView = Backbone.View.extend({
 
-	//... is a list tag.
+	// Element does not exist yet, but will be a `li`.
 	"tagName":  "li",
 
 	// Cache the template function for a single item.
@@ -29,7 +27,7 @@ App.Views.TodoView = Backbone.View.extend({
 		"keypress .todo-input"      : "updateOnEnter"
 	},
 
-	// The TodoView listens for changes to its model, re-rendering.
+	// The TodoView listens for changes to its Model, re-rendering.
 	// If the view defines an initialize function, it will be called when the view is first created.
 	initialize: function() {
 		this.model.bind("change", this.render, this);

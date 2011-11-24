@@ -1,8 +1,10 @@
+// Todo Item Model
+// ----------
+
 var Todo = Backbone.Model.extend({
 
-	// Default attributes for a todo item.
+	// Default attributes for a todo item. Attribute `text` is implied.
 	defaults: function() {
-		// `text` attr is implied
 		return {
 			"done":  false,
 			"order": App.Models.Todos.nextOrder() // what if I can not haz initialized?
@@ -16,8 +18,7 @@ var Todo = Backbone.Model.extend({
 
 });
 
-// Todo Collection
-// Collections are ordered sets of models
+// Todo Items Collection
 // ---------------
 
 // The collection of todos is backed by *localStorage* instead of a remote server.
@@ -42,7 +43,7 @@ var TodoList = Backbone.Collection.extend({
 		return this.without.apply(this, this.done()); // reverse of `done()` filter
 	},
 
-	// We keep the Todos in sequential order, despite being saved by unordered
+	// We keep the **Todos** in sequential order, despite being saved by unordered
 	// GUID in the database. This generates the next order number for new items.
 	nextOrder: function() {
 		if (!this.length) return 1; // first item

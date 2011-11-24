@@ -1,18 +1,17 @@
-// Create Todo Item View
-// --------------
+// Create Todo View
+// ----------
 
-// The DOM element for a todo item...
-// Not a strict convention
 App.Views.CreateTodoView = Backbone.View.extend({
 
-	// bind to existing element
+	// Bind to an existing element.
 	"el":  "#create-todo",
 
-	// The DOM events
+	// The DOM events to bind to.
 	"events": {
 		"keypress #new-todo":  "createOnEnter"
 	},
 
+	// Keep a local reference to an input field.
 	initialize: function() {
 		this.input = this.$("#new-todo");	
 	},
@@ -23,10 +22,12 @@ App.Views.CreateTodoView = Backbone.View.extend({
 		var text = this.input.val();
 		if (!text || e.keyCode != 13) return;
 		
+		// Create new **Todo**.
 		var todo = App.Models.Todos.create({text: text});
 		
 		this.input.val('');
 
+		// Say a **Todo** has been created and pass it round.
 		App.Mediator.trigger("todoCreated", todo);
 	}
 

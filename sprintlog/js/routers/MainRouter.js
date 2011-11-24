@@ -1,7 +1,8 @@
 App.Routers.Main = Backbone.Router.extend({
 
     initialize: function(options) {
-		Todos.fetch();
+    	App.Models.Todos = new TodoList;
+		App.Models.Todos.fetch();
 
         new App.Views.CreateTodoView;
         

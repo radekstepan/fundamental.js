@@ -23,7 +23,7 @@ App.Views.CreateTodoView = Backbone.View.extend({
 		var text = this.input.val();
 		if (!text || e.keyCode != 13) return;
 		
-		var todo = Todos.create({text: text});
+		var todo = App.Models.Todos.create({text: text});
 		
 		this.input.val('');
 

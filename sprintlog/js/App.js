@@ -3,6 +3,7 @@ var App = {
 	Mediator: {},
 
     Views: {},
+    Models: {},
     Routers: {},
 
     init: function() {

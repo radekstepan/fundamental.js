@@ -23,7 +23,7 @@ App.Views.TodoListView = Backbone.View.extend({
 
 	// Add all items in the **Todos** collection at once.
 	addAll: function() {
-		Todos.each(this.addOne);
+		App.Models.Todos.each(this.addOne);
 	},
 
 });

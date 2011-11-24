@@ -5,7 +5,7 @@ var Todo = Backbone.Model.extend({
 		// `text` attr is implied
 		return {
 			"done":  false,
-			"order": Todos.nextOrder()
+			"order": App.Models.Todos.nextOrder() // what if I can not haz initialized?
 		};
 	},
 
@@ -56,5 +56,3 @@ var TodoList = Backbone.Collection.extend({
 	}
 
 });
-
-var Todos = new TodoList;
